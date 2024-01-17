@@ -14,7 +14,7 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compile the source code'
-                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
             post {
                 success {
@@ -26,6 +26,7 @@ pipeline {
         stage('Security Check') {
             steps {
                 echo 'Run the security check against the application' 
+                // Add security check commands here using 'sh' for Linux
             }
         }
         stage('Run Unit Tests') {
@@ -40,7 +41,7 @@ pipeline {
         }
         stage('Publish Artifacts') {
             steps {
-                //input("Do you want to continue or not?")
+                // input("Do you want to continue or not?")
                 echo 'Save the assemblies generated from the compilation' 
             }
         }
